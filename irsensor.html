@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ms. DiFede</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+      <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Ms. DiFede's Classes</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#"></span> Home</a></li>
+        <li><a href="#">Web Technology</a></li>
+       <!--- <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Web Technology<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+          </ul> 
+        </li>-->
+        <li><a href="#">Robotics</a></li>
+        <li><a href="#">AP CS A</a></li>
+        <li><a href="#">About Ms. DiFede</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h3>Robotics - Reading input from an NXT Sensor</h3>
+<p>The IR sensor gets readings from the IR ball, and can give you information 
+on where and how far away the ball is.  To learn about how to use the sensor, 
+we can look at the HiTechnic 
+<a href="https://www.hitechnic.com/cgi-bin/commerce.cgi?preadd=action&key=NSK1042">
+  spec sheet</a> and also <a href="www.google.com">Google</a>.</p>
+
+<h4>Download the IR Seeker Library</h4>
+<ol>
+<li>Download the <a href="https://blog.blechschmidt.saarland/wp-content/uploads/2013/08/HTInfraredSeeker.zip">
+HiTechnic IR Seeker Library</a> that Birk Blechschmidt created.</li>
+<li>Open your Downloads folder and double-click on the file to unzip</li>
+<li>Move the unzipped folder to your Arduino Library folder.  On a Mac this can be 
+found in Documents -> Arduino -> libraries.</li>
+<li>Run Example Code</li>
+</ol>
+<pre>
+#include &lt;Wire.h&gt; //Include the Wire Library
+#include &lt;HTInfraredSeeker.h&gt; //Include the IR Seeker Library
+
+//setup runs once at the beginning
+void setup() {
+  Serial.begin(9600); //Starts the Serial Monitor so we can read output
+  Serial.println("Dir\tStrength"); //Prints Dir & Strength at top
+  InfraredSeeker::Initialize(); //initializes the IR sensor
+}
+
+//loop runs repeatedly
+void loop() {   
+  //Read the AC (pulsed) information from the IR Sensor
+  InfraredResult InfraredBall = InfraredSeeker::ReadAC();
+  
+  Serial.print(InfraredBall.Direction); //Print the Direction Number
+  Serial.print("\t");//Print a tab
+  Serial.print(InfraredBall.Strength); //Print the Strength Number
+  Serial.println(); //Print a new line
+  delay(100); //delay a tenth of a second
+}
+</pre>
+<p>Above, you will see the example code provided with the library. Copy and 
+paste the code into a new Arduino sketch.  After you know you have connected 
+the IR Sensor properly, plug in and run the code.  As you run the code, 
+experiment with the following questions to determine how the IR Sensor works,
+and how you can use it’s output to determine where the ball is.</p>
+
+<h4>Questions to Check for Understanding</h4>
+<ol>
+<li>What happens when you run the code?</li>
+<li>What happens if you run the code near a ball that is on?</li>
+<li>How does the output change depending on the location of the ball? Look at <b>BOTH</b> numbers.</li>
+<li>Does the sensor position affect the results?  Is there a “best” sensor position?</li>
+</ol>
+</div>
+</body>
+</html>
