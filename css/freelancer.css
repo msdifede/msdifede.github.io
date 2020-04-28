@@ -160,7 +160,7 @@ sup {
 }
 
 a {
-  color: #1abc9c;
+  color: darkblue;
   text-decoration: none;
   background-color: transparent;
 }
@@ -214,6 +214,10 @@ svg {
 
 table {
   border-collapse: collapse;
+}
+
+a:visited{
+  color: black;
 }
 
 caption {
